@@ -12,10 +12,8 @@ phases:
       java: corretto17
     commands:
       - yum update -y
-      - echo "Installing Maven..."
-      - wget https://downloads.apache.org/maven/maven-3/3.8.2/binaries/apache-maven-3.8.2-bin.tar.gz
-      - tar xzvf apache-maven-3.8.2-bin.tar.gz
-      - export PATH=$PATH:`pwd`/apache-maven-3.8.2/bin
+      - yum install -y maven
+      - echo Installing Maven...
       - mvn -version
   pre_build:
     commands:
@@ -26,7 +24,7 @@ phases:
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
       - echo Running Maven build...
-      - mvn clean install
+      - mvn package
   build:
     commands:
       - echo Build started on `date`
