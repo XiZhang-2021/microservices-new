@@ -37,7 +37,6 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - cd product-service
-      - systemctl start docker
       - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
