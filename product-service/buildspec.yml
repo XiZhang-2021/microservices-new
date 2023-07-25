@@ -17,7 +17,7 @@ phases:
 #      - mvn -version
       - yum update -y
       - echo Installing Maven...
-      - wget https://www-us.apache.org/dist/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
+      - wget https://archive.apache.org/dist/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
       - tar xzf apache-maven-3.8.5-bin.tar.gz
       - ln -s apache-maven-3.8.5 /usr/local/apache-maven
       - export PATH=/usr/local/apache-maven/bin:${PATH}
