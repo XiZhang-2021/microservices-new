@@ -42,6 +42,7 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
       - docker images
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 418683829126.dkr.ecr.us-east-1.amazonaws.com/ecommerce-product-service
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
 #      - echo Writing image definitions file...
