@@ -23,7 +23,11 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws --version
 #      - $(aws ecr get-login --region us-east-1 --no-include-email)
-      - $(aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/i0g5z5b2)
+      - $(aws ecr get-login-password \
+        --region us-east-1 | docker login \
+        --username AWS \
+        --password-stdin 418683829126.dkr.ecr.us-east-1.amazonaws.com)
+#      - $(aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/i0g5z5b2)
       - REPOSITORY_URI=418683829126.dkr.ecr.us-east-1.amazonaws.com/ecommerce-product-service
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
@@ -43,7 +47,7 @@ phases:
       - echo Pushing the Docker images...
       - docker images
       - docker push $REPOSITORY_URI:latest
-#      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
 #      - echo Writing image definitions file...
 #      - printf '[{"name”:"__ECS_CONTAINER_NAME__","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 #      - cat imagedefinitions.json
