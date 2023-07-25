@@ -30,6 +30,7 @@ phases:
       - REPOSITORY_URI=418683829126.dkr.ecr.us-west-2.amazonaws.com/ecommerce-product-service
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - docker info
       - echo Running Maven build...
       - mvn package
   build:
@@ -39,18 +40,13 @@ phases:
       - cd product-service
       - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
       - docker images
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-  post_build:
-    commands:
-#      - echo Build completed on `date`
-#      - echo Pushing the Docker images...
-#      - docker images
-#      - docker push $REPOSITORY_URI:latest
-#      - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
 #      - printf '[{"name”:"__ECS_CONTAINER_NAME__","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 #      - cat imagedefinitions.json
