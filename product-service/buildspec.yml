@@ -8,8 +8,8 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      docker: 20
-      java: corretto17
+#      docker: 20
+#      java: corretto17
     commands:
 #      - yum update -y
 #      - yum install -y maven
