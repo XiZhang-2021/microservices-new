@@ -24,7 +24,6 @@ phases:
       - mvn -version
   pre_build:
     commands:
-      - aws ecr-public get-login-password --region us-west-2 | docker login --username AWS --password-stdin public.ecr.aws/i0g5z5b2
       - echo Logging in to Amazon ECR...
       - aws --version
       - $(aws ecr get-login --region us-west-2 --no-include-email)
