@@ -22,6 +22,7 @@ phases:
       - ln -s apache-maven-3.8.5 /usr/local/apache-maven
       - export PATH=/usr/local/apache-maven/bin:${PATH}
       - mvn -version
+      - df -h
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
@@ -45,7 +46,7 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
       - docker images
-      - docker push $REPOSITORY_URI:latest 2>&1
+      - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
 #      - printf '[{"name”:"__ECS_CONTAINER_NAME__","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
