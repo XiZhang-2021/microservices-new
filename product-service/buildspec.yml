@@ -13,7 +13,7 @@ phases:
     commands:
       - yum update -y
       - echo "Installing Maven..."
-      - wget https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+      - wget https://downloads.apache.org/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz
       - tar xzvf apache-maven-3.6.3-bin.tar.gz
       - export PATH=$PATH:`pwd`/apache-maven-3.6.3/bin
       - mvn -version
