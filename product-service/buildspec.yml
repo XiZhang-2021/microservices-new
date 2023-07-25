@@ -15,7 +15,7 @@ phases:
 #      - yum install -y maven
 #      - echo Installing Maven...
 #      - mvn -version
-      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/i0g5z5b2
+      - aws ecr-public get-login-password --region us-west-2 | docker login --username AWS --password-stdin public.ecr.aws/i0g5z5b2
       - yum update -y
       - echo Installing Maven...
       - wget https://archive.apache.org/dist/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
