@@ -11,9 +11,16 @@ phases:
       docker: 20
       java: corretto17
     commands:
+#      - yum update -y
+#      - yum install -y maven
+#      - echo Installing Maven...
+#      - mvn -version
       - yum update -y
-      - yum install -y maven
       - echo Installing Maven...
+      - wget https://downloads.apache.org/maven/maven-4/4.0.0/binaries/apache-maven-4.0.0-bin.tar.gz
+      - tar xzf apache-maven-4.0.0-bin.tar.gz
+      - ln -s apache-maven-4.0.0 /usr/local/apache-maven
+      - export PATH=/usr/local/apache-maven/bin:${PATH}
       - mvn -version
   pre_build:
     commands:
